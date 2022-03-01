@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import personRoutes from './routes/persons'
+import personRoutes from './routes/persons.js'
 
 const app = express();
 dotenv.config();
