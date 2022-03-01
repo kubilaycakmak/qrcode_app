@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) =>
             // padding: theme.spacing(2)
         },
         paper:{
-            padding: theme.spacing(3)
+            padding: theme.spacing(2)
         },
         textField:{
             marginBottom:theme.spacing(2),
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) =>
     })
 );
 
-const postSchema = yup.object().shape(
+const personSchema = yup.object().shape(
     {
         fullName:yup.string().required(),
         username:yup.string().required(),
@@ -52,7 +52,7 @@ export const PersonAdd = ({open, handleClose}) => {
 
     const [ file, setFile ] = useState(null);    
     const { register, handleSubmit, control, errors, reset } = useForm({
-        resolver: yupResolver(postSchema)
+        resolver: yupResolver(personSchema)
     });
 
     const onSubmit = (data) => {
