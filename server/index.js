@@ -23,7 +23,9 @@ app.get('/health', (req, res) => {
     })
 })
 
-const PORT = process.env.PORT || 5001;
+app.use('/persons', personRoutes);
+
+const PORT = process.env.PORT || 5000;
 
 mongoose
     .connect(process.env.CONNECTION_URL, { 

@@ -1,10 +1,18 @@
 import express from 'express';
-import { getPersons } from '../controllers/persons'
+import { getPersons, getSinglePerson, createPerson } from '../controllers/persons'
 const router = express.Router();
 
 router.get(
     '/list',
     getPersons
 );
+router.get(
+    '/:id',
+    getSinglePerson
+);
+router.post(
+    '/create',
+    createPerson
+)
 
 export default router;
