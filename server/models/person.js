@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const personSchema = mongoose.Schema({
     id:Number,
-    firstName:String,
-    lastName:String,
+    fullName:String,
     username:String,
     age:Number,
     phoneNumber:Number,
@@ -13,9 +12,6 @@ const personSchema = mongoose.Schema({
     },
     shortSummary:String,
     summary:String,
-    education:Array,
-    experience:Array,
-    referance:Array,
     createdAt:{
         type:Date,
         default: new Date()

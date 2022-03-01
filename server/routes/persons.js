@@ -3,7 +3,7 @@ import { getPersons, getSinglePerson, createPerson } from '../controllers/person
 const router = express.Router();
 
 router.get(
-    '/list',
+    '/',
     getPersons
 );
 router.get(
