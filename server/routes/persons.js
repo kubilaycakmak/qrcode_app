@@ -11,7 +11,7 @@ router.get(
     getSinglePerson
 );
 router.post(
-    '/create',
+    '/',
     createPerson
 )
 
