@@ -18,7 +18,7 @@ app.use(cors());
 app.get('/health', (req, res) => {
     // res.send('server healthy.');
     res.json({
-        author: "qrcode_team",
+        author: "qrcode_teams",
         message: "server is healthy.."
     })
 })
