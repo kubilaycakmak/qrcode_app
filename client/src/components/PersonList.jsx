@@ -9,10 +9,6 @@ const PersonList = () => {
 
     const persons = useSelector(state => state.persons.persons)
 
-    // const calculateMd = () => {
-    //     // return layout === "gridThree" ? 4 : 3;
-    // }
-
     if(persons.length === 0){
         return (
             <>
@@ -31,7 +27,7 @@ const PersonList = () => {
                     {
                         persons.length > 0 &&
                         persons.map((person) => (
-                            <Grid item key={person?._id} xs={12} >
+                            <Grid item key={person?._id} xs={4} >
                                 {/* md={calculateMd()} */}
                                 <PersonCard {...person} />
                             </Grid>

@@ -10,3 +10,4 @@ export const fetchSinglePerson =
 
 export const createPerson =
     async (person) => await axios.post(apiBaseUrl + persons, person);
+

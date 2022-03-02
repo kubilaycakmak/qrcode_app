@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/core';
 import {
     Button,
     TextField,
-    Select,
-    Input,
-    MenuItem,
     Dialog,
     DialogActions,
     DialogContent,
@@ -23,7 +20,7 @@ import { createPerson } from '../actions/person'
 const useStyles = makeStyles((theme) => 
     ({
         root:{
-            // padding: theme.spacing(2)
+            padding: theme.spacing(2)
         },
         paper:{
             padding: theme.spacing(2)
@@ -73,6 +70,7 @@ export const PersonAdd = ({open, handleClose}) => {
     const clearForm = () => {
         reset();
         setFile(null);
+        setQrCode(null);
         handleClose();
     };
 

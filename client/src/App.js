@@ -66,7 +66,7 @@ export const App = () => {
               color="secondary"
               className={classes.title}
             >
-              <a href="/posts">QRCODE RESUME</a>
+              <a href="/persons">QRCODE RESUME</a>
             </Typography>
             <Button color="primary" variant="outlined" startIcon={<PenIcon />} onClick={handleOpen}>New Person</Button>
           </Toolbar>
@@ -84,7 +84,6 @@ export const App = () => {
           </Grid>
         </Grid>
       </Container>
-
       <PersonAdd open={open} handleClose={handleClose} />
     </>
   )

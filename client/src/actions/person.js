@@ -13,9 +13,9 @@ export const fetchPersons = () => async (dispatch) => {
     }
 };
 
-export const createPerson = (post) => async (dispatch) => {
+export const createPerson = (person) => async (dispatch) => {
     try {
-        const { data } = await api.createPerson(post);
+        const { data } = await api.createPerson(person);
         dispatch({
             type: types.CREATE_PERSON,
             payload: data

@@ -18,8 +18,8 @@ export const getPersons = async (req, res) => {
 export const getSinglePerson = async (req, res) => {
     try {
         const { id: _id } = req.params;
-        const persons = await Person.findById(_id);
-        res.status(200).json(persons);
+        const person = await Person.findById(_id);
+        res.status(200).json(person);
     } catch (error) {
         res.status(404).json({
             createdAt:{
