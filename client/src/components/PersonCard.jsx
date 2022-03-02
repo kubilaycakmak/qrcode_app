@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { 
     Card,
-    Chip,
-    Button,
     CardMedia,
     CardContent,
-    CardActions,
     Typography,
 } from '@material-ui/core';
-// import noImage from '../images/noimage.jpg';
+import noImage from '../images/noImage.jpg';
+import noQrCode from '../images/noQrCode.jpg';
 
 const useStyles = makeStyles(
     (theme) => ({
@@ -25,21 +23,23 @@ const useStyles = makeStyles(
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             backgroundBlendMode: "darken",
         },
-        
         overlay: {
             position: "absolute",
             top: "20px",
             left: "20px",
             color: "white",
         },
-        chip: {
-            marginTop: theme.spacing(1),
-        },
+        qr:{
+            marginTop:"32px",
+            width:"100px",
+            height:"100px",
+            margin:"auto auto"
+        }
     })
 )
 
-const PersonCard = ({ _id, fullName, shortSummary, createdAt }) => {
-    
+const PersonCard = ({ _id, fullName, username, title, email, phoneNumber, dateofBirth, shortSummary, summary, createdAt, image, qrCode, githubLink  }) => {
+
     const convertRelativeTime = date => {
         return moment(date).fromNow();
     }
@@ -48,35 +48,34 @@ const PersonCard = ({ _id, fullName, shortSummary, createdAt }) => {
 
     return (
         <Card className={classes.root}>
-            <Link to={`/persons/${_id}`}>
+            <Link to={`/persons/${username}`}>
                 <CardMedia 
                     className={classes.media} 
-                    // image={image || noImage} 
+                    image={image || noImage} 
                     title="Image"
                 ></CardMedia>
             </Link>
             <div className={classes.overlay}>
-                <Typography variant="h6">Mr/Mrs</Typography>
+                <Typography variant="h6">{fullName}</Typography>
                 <Typography variant="body2">{convertRelativeTime(createdAt)}</Typography>
             </div>
 
             <CardContent>
                 <Typography variant="h6" component="p" gutterBottom>
-                    {fullName}
+                    {title}
+                </Typography>{" "}
+                <Typography variant="h6" component="p" gutterBottom>
+                    {githubLink}
                 </Typography>{" "}
                 <Typography variant="overline" component="p" gutterBottom>
                     {shortSummary}
                 </Typography>{" "}
-                {/* <Typography variant="body2" component="p">
-                    {content?.substring(0, 250) + "..."}
-                </Typography> */}
-                {/* <Chip label={`# ${tag}`} variant="outlined" className={classes.chip} /> */}
+                <CardMedia 
+                    className={classes.qr} 
+                    image={qrCode || noQrCode} 
+                    title="Image"
+                ></CardMedia>
             </CardContent>
-            <CardActions>
-                <Button size="small" color="primary">
-                <Link to={`/persons/${_id}`}>See more..</Link>
-                </Button>
-            </CardActions>
         </Card>
     )
 }

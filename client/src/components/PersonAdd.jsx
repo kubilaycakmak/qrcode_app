@@ -38,11 +38,13 @@ const personSchema = yup.object().shape(
     {
         fullName:yup.string().required(),
         username:yup.string().required(),
-        age:yup.string().required(),
+        title:yup.string().required(),
+        email:yup.string().required(),
         phoneNumber:yup.string().required(),
-        dateofBirth:yup.date().required(),
-        shortSummary:yup.string().max(20).required(),
+        // dateofBirth:yup.string().required(),
+        shortSummary:yup.string().required(),
         summary:yup.string().min(20).required(),
+        githubLink: yup.string().required()
     }
 );
 
@@ -51,6 +53,7 @@ export const PersonAdd = ({open, handleClose}) => {
     const dispatch = useDispatch();
 
     const [ file, setFile ] = useState(null);    
+    const [qrCode, setQrCode ] = useState(null);
     const { register, handleSubmit, control, errors, reset } = useForm({
         resolver: yupResolver(personSchema)
     });
@@ -59,7 +62,8 @@ export const PersonAdd = ({open, handleClose}) => {
         dispatch(createPerson(
             {
                 ...data, 
-                image:file
+                image:file,
+                qrCode:qrCode
             }
         ));
         clearForm();
@@ -72,8 +76,12 @@ export const PersonAdd = ({open, handleClose}) => {
         handleClose();
     };
 
+    const generateQR = (id) => {
+        setQrCode(`http://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/persons/${id}&size=120x120`);
+    }   
+
     const classes = useStyles();
-    
+
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>
@@ -96,45 +104,76 @@ export const PersonAdd = ({open, handleClose}) => {
                             error={errors.fullName ? true : false}
                             fullWidth
                         />
-
-                        {/* <TextField
-                            id="subtitle"
-                            label=""
-                            name='subtitle'
+                         <TextField
+                            id="username"
+                            label="User Name"
+                            name='username'
                             variant='outlined'
                             className={classes.textField}
                             size='small'
                             inputRef={register}
-                            error={errors.subtitle ? true : false}
+                            error={errors.username ? true : false}
+                            fullWidth
+                        />
+                        <TextField
+                            id="title"
+                            label="Title"
+                            name='title'
+                            variant='outlined'
+                            className={classes.textField}
+                            size='small'
+                            inputRef={register}
+                            error={errors.title ? true : false}
+                            fullWidth
+                        />
+                        <TextField
+                            id="email"
+                            label="Email Adress"
+                            name="email"
+                            variant='outlined'
+                            type="email"
+                            className={classes.textField}
+                            size='small'
+                            inputRef={register}
+                            error={errors.email ? true : false}
+                            fullWidth
+                        />
+                        <TextField
+                            id="phoneNumber"
+                            label="Phone Number"
+                            name='phoneNumber'
+                            variant='outlined'
+                            className={classes.textField}
+                            size='small'
+                            inputRef={register}
+                            error={errors.phoneNumber ? true : false}
+                            fullWidth
+                        />
+                        {/* <TextField
+                            id="dateofBirth"
+                            label="Birthday"
+                            variant='outlined'
+                            type="date"
+                            className={classes.textField}
+                            defaultValue="1996-03-18"
+                            size='small'
+                            inputRef={register}
+                            error={errors.dateofBirth ? true : false}
                             fullWidth
                         /> */}
-
-                        {/* <Controller 
-                            as={
-                                <Select
-                                input={<Input />}
-                                className={classes.textField}
-                                fullWidth
-                                >
-                                    {
-                                        tags.map((tag, index) => (
-                                            <MenuItem
-                                            key={index}
-                                            value={tag}
-                                            >
-                                                {tag}
-                                            </MenuItem>
-                                        ))
-                                    }
-                                </Select>
-                            }
-
-                            name='tag'
-                            control={control}
-                            error={errors.tag ? true : false}
-                            defaultValue={tags[0]}
-                        /> */}
-
+                        <TextField
+                            id="shortSummary"
+                            label="Short Summary"
+                            name='shortSummary'
+                            multiline
+                            rows={2}
+                            variant='outlined'
+                            className={classes.textField}
+                            size='small'
+                            inputRef={register}
+                            error={errors.shortSummary ? true : false}
+                            fullWidth
+                        />
                         <TextField
                             id="summary"
                             label="Summary"
@@ -148,9 +187,27 @@ export const PersonAdd = ({open, handleClose}) => {
                             error={errors.summary ? true : false}
                             fullWidth
                         />
-
+                        <TextField
+                            id="githubLink"
+                            label="Github Link"
+                            name='githubLink'
+                            variant='outlined'
+                            className={classes.textField}
+                            size='small'
+                            inputRef={register}
+                            error={errors.githubLink ? true : false}
+                            fullWidth
+                        />
+                        <Button 
+                            // disabled={errors.username ? true : false}
+                            variant='outlined' 
+                            color="primary"
+                            onClick={() => generateQR(control.getValues().username)}
+                            >Generate QR-Code
+                        </Button>
+                        <br />
+                        <br />
                         <FileBase64 multiple={false} onDone={({base64}) => setFile(base64)} />
-
                     </form>
                 </div>
             </DialogContent>

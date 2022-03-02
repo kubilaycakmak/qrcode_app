@@ -4,7 +4,8 @@ const personSchema = mongoose.Schema({
     id:Number,
     fullName:String,
     username:String,
-    age:Number,
+    title:String,
+    email:String,
     phoneNumber:String,
     dateofBirth:{
         type:Date,
@@ -12,10 +13,13 @@ const personSchema = mongoose.Schema({
     },
     shortSummary:String,
     summary:String,
+    image:String,
     createdAt:{
         type:Date,
         default: new Date()
-    }
+    },
+    qrCode:String,
+    githubLink:String
 });
 
 const Person = mongoose.model("Person", personSchema);

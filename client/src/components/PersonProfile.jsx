@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Paper, Divider, Button, Chip } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
-// import noImage from '../images/noimage.jpg'
+import noImage from '../images/noImage.jpg'
 import { fetchSinglePerson } from '../actions/person'
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
     },
     image: {
-        width: "100%",
+        width: "150px",
+        height:"150px",
         borderRadius: 5,
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(4),
@@ -66,7 +67,7 @@ const PersonProfile = ({ history, location, match }) => {
                         <div>
                             <div className={classes.header}>
                                 <Typography variant="h5" gutterBottom>
-                                    {selectedPerson?.title}
+                                    {selectedPerson?.fullName}
                                 </Typography>
                             </div>
                         </div>
@@ -80,9 +81,8 @@ const PersonProfile = ({ history, location, match }) => {
                         <Typography variant="caption" component='p'>
                             {convertRelativeTime(selectedPerson?.createdAt)}
                         </Typography>
-                        <Chip label={`# ${selectedPerson?.tag}`} variant="outlined" className={classes.chip} />
                         <div className={classes.summary}>
-                            {/* <img src={selectedPerson?.image || noImage} alt="post" className={classes.image}></img> */}
+                            <img src={selectedPerson?.image || noImage} alt="post" className={classes.image}></img>
                             <Typography variant="body1">
                                 {selectedPerson?.summary}
                             </Typography>
