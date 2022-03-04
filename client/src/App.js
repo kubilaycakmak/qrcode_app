@@ -66,7 +66,7 @@ export const App = () => {
               color="secondary"
               className={classes.title}
             >
-              <a href="/persons">QRCODE RESUME</a>
+              <a href="https://qrcode-cicc-frontend.herokuapp.com/persons">QRCODE RESUME</a>
             </Typography>
             <Button color="primary" variant="outlined" startIcon={<PenIcon />} onClick={handleOpen}>New Person</Button>
           </Toolbar>

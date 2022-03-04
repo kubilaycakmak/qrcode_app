@@ -75,7 +75,7 @@ export const PersonAdd = ({open, handleClose}) => {
     };
 
     const generateQR = (id) => {
-        setQrCode(`http://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/persons/${id}&size=120x120`);
+        setQrCode(`http://api.qrserver.com/v1/create-qr-code/?data=https://qrcode-cicc-frontend.herokuapp.com/persons/${id}&size=120x120`);
     }   
 
     const classes = useStyles();
